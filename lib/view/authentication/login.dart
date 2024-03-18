@@ -1,5 +1,9 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, library_private_types_in_public_api
 
+import 'package:exchange/blocs/cubit/login_cubit.dart';
+import 'package:exchange/widgets/custom_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +21,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final mobileController = TextEditingController();
-  final passwordController = TextEditingController();
   final List<FocusNode> _focusNodes = [
     FocusNode(),
   ];
@@ -25,20 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
   }
-
-  // verifyPhoneNumber() async {
-  //   await FirebaseAuth.instance.verifyPhoneNumber(
-  //     phoneNumber: '+44 7123 123 456',
-  //     verificationCompleted: (PhoneAuthCredential credential) {},
-  //     verificationFailed: (FirebaseAuthException e) {
-  //       if (e.code == 'invalid-phone-number') {
-  //         print('The provided phone number is not valid.');
-  //       }
-  //     },
-  //     codeSent: (String verificationId, int? resendToken) {},
-  //     codeAutoRetrievalTimeout: (String verificationId) {},
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +57,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 38,
                 ),
-                Text(
-                  "Hi Welcome Back!",
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24,
-                      ),
+                const CustomImage(
+                  path: DefaultImages.appLogo1,
+                  height: 150,
+                  width: 200,
                 ),
+                // Text(
+                //   "Hi Welcome Back!",
+                //   style: Theme.of(context).textTheme.headline6!.copyWith(
+                //         fontWeight: FontWeight.w700,
+                //         fontSize: 24,
+                //       ),
+                // ),
                 const SizedBox(
                   height: 4,
                 ),
@@ -93,7 +87,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Column(
                       children: [
-                        const SizedBox(height: 30),
                         CustomTextFormField(
                           focusNode: _focusNodes[0],
                           prefix: Padding(
@@ -116,23 +109,26 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         const SizedBox(height: 24),
-                        InkWell(
-                          focusColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          onTap: () {
-                            // Get.to(
-                            //   const OtpAuthenticationScreen(),
-                            //   transition: Transition.rightToLeft,
-                            //   duration: const Duration(milliseconds: 500),
-                            // );
+                        BlocBuilder<LoginCubit, LoginState>(
+                          builder: (context, state) {
+                            if (state is LoginStateLoading) {
+                              return const CircularProgressIndicator();
+                            }
+                            return InkWell(
+                              focusColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              onTap: () {
+                                context.read<LoginCubit>().login();
+                              },
+                              child: customButton(
+                                  HexColor(AppTheme.primaryColorString!),
+                                  "Login",
+                                  HexColor(AppTheme.secondaryColorString!),
+                                  context),
+                            );
                           },
-                          child: customButton(
-                              HexColor(AppTheme.primaryColorString!),
-                              "Login",
-                              HexColor(AppTheme.secondaryColorString!),
-                              context),
                         ),
                       ],
                     ),

@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:exchange/view/authentication/login.dart';
+import 'package:exchange/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,9 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void init() async {
-    Timer(const Duration(seconds: 3), () {
-      Get.offAll(() => const LoginScreen());
-    });
+    // Timer(const Duration(seconds: 3), () {
+    //   Get.offAll(() => const LoginScreen());
+    // });
   }
 
   @override
@@ -46,11 +47,10 @@ class _SplashScreenState extends State<SplashScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                   width: 40,
-                  child: SvgPicture.asset(DefaultImages.logo,
-                      color: HexColor(AppTheme.secondaryColorString!)),
+                  child: CustomImage(path: DefaultImages.appLogo1),
                 ),
                 const SizedBox(width: 8),
                 SizedBox(

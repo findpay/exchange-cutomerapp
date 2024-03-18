@@ -1,4 +1,5 @@
 class DefaultImages {
+  static const String appLogo1 = 'assets/images/degdeg.png';
   static const String homr = 'assets/images/home.svg';
   static const String card = 'assets/images/card.svg';
   static const String chart = 'assets/images/chart.svg';

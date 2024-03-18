@@ -1,5 +1,7 @@
+import 'package:exchange/blocs/cubit/login_cubit.dart';
 import 'package:exchange/view/splash/splash.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
@@ -7,7 +9,7 @@ import 'config/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -41,11 +43,18 @@ class MyApp extends StatelessWidget {
       systemNavigationBarDividerColor: AppTheme.getTheme().disabledColor,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
-    return GetMaterialApp(
-      title: 'FinPay',
-      theme: AppTheme.getTheme(),
-      debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginCubit>(
+          create: (BuildContext context) => LoginCubit(),
+        ),
+      ],
+      child: GetMaterialApp(
+        title: 'FinPay',
+        theme: AppTheme.getTheme(),
+        debugShowCheckedModeBanner: false,
+        home: const SplashScreen(),
+      ),
     );
   }
 }

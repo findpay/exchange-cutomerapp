@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "328321553889",
+    "project_id": "exchange-6cfc4",
+    "storage_bucket": "exchange-6cfc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328321553889:android:a5ad1b2ebf878966bd2ea0",
+        "android_client_info": {
+          "package_name": "com.example.exchange"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKelYJNfI0yF3_WT4ViATVBI4qmCijpF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
