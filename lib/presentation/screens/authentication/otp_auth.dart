@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../config/theme.dart';
+import '../../theme.dart';
 import '../../widgets/custom_button.dart';
 
 class OtpAuthenticationScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../config/theme.dart';
+import '../theme.dart';
 
 class CustomButton extends StatelessWidget {
   final String? title;

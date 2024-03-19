@@ -1,11 +1,11 @@
-import 'package:exchange/blocs/cubit/login_cubit.dart';
-import 'package:exchange/view/splash/splash.dart';
+import 'package:exchange/logic/cubit/login/login_cubit.dart';
+import 'package:exchange/presentation/screens/splash/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
-import 'config/theme.dart';
+import 'presentation/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../config/images.dart';
+import '../../constants/images.dart';
 
 class CustomImage extends StatelessWidget {
   const CustomImage(

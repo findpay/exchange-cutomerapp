@@ -1,28 +1,28 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../config/theme.dart';
+import '../theme.dart';
 
-class CustomTextField extends StatelessWidget {
+class CardTextField extends StatelessWidget {
   final String? hintText;
-  final Widget? widget;
+
   final double? radius;
   final Color? color;
   final TextEditingController? textEditingController;
   final bool isObsecure;
   final Widget? sufix;
   final TextInputType? inputType;
-  const CustomTextField(
-      {Key? key,
-      this.hintText,
-      this.widget,
-      this.radius,
-      this.color,
-      this.textEditingController,
-      this.isObsecure = false,
-      this.sufix,
-      this.inputType})
-      : super(key: key);
+  const CardTextField({
+    super.key,
+    this.hintText,
+    this.radius,
+    this.color,
+    this.textEditingController,
+    this.isObsecure = false,
+    this.sufix,
+    this.inputType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +40,8 @@ class CustomTextField extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(top: 16),
+          contentPadding: const EdgeInsets.only(left: 14, right: 14, top: 16),
           border: InputBorder.none,
-          prefixIcon: widget ?? const SizedBox(),
           suffixIcon: sufix ?? const SizedBox(),
           hintText: hintText,
           hintStyle: Theme.of(context).textTheme.bodyText1!.copyWith(

@@ -1,14 +1,13 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, library_private_types_in_public_api
 
-import 'package:exchange/blocs/cubit/login_cubit.dart';
-import 'package:exchange/widgets/custom_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:exchange/logic/cubit/login/login_cubit.dart';
+import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../config/images.dart';
-import '../../config/theme.dart';
+import '../../../constants/images.dart';
+import '../../theme.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textformfield.dart';
 

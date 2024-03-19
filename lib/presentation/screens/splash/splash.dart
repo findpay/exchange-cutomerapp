@@ -1,14 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
-
-import 'dart:async';
-
-import 'package:exchange/view/authentication/login.dart';
-import 'package:exchange/widgets/custom_image.dart';
+import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../config/images.dart';
-import '../../config/theme.dart';
+import '../../../constants/images.dart';
+import '../../theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
