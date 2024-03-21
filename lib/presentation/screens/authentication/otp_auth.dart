@@ -116,24 +116,11 @@ class _OtpAuthenticationScreenState extends State<OtpAuthenticationScreen> {
                         const SizedBox(
                           height: 32,
                         ),
-                        InkWell(
-                          focusColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          onTap: () {
-                            // Get.to(
-                            //   const FingerPrintScreen(),
-                            //   transition: Transition.rightToLeft,
-                            //   duration: const Duration(milliseconds: 500),
-                            // );
-                          },
-                          child: customButton(
-                              HexColor(AppTheme.primaryColorString!),
-                              "Continue",
-                              HexColor(AppTheme.secondaryColorString!),
-                              context),
-                        ),
+                        customButton(
+                            bgClr: HexColor(AppTheme.primaryColorString!),
+                            text: "Continue",
+                            txtClr: HexColor(AppTheme.secondaryColorString!),
+                            context: context),
                       ],
                     ),
                   ),

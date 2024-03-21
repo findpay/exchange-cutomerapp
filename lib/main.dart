@@ -1,4 +1,6 @@
-import 'package:exchange/logic/cubit/login/login_cubit.dart';
+import 'package:exchange/logic/cubit/change_account_cubit.dart';
+import 'package:exchange/logic/cubit/home_cubit.dart';
+import 'package:exchange/logic/cubit/login_cubit.dart';
 import 'package:exchange/presentation/screens/splash/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +49,13 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<LoginCubit>(
           create: (BuildContext context) => LoginCubit(),
+        ),
+        BlocProvider<HomeCubit>(
+          create: (BuildContext context) => HomeCubit(),
+        ),
+        BlocProvider<ChangeAccountCubit>(
+          create: (BuildContext context) => ChangeAccountCubit(
+              homeCubit: BlocProvider.of<HomeCubit>(context)),
         ),
       ],
       child: GetMaterialApp(

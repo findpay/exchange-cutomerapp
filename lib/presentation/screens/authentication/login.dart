@@ -1,11 +1,10 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, library_private_types_in_public_api
-
-import 'package:exchange/logic/cubit/login/login_cubit.dart';
+import 'package:exchange/presentation/screens/home/home.dart';
 import 'package:exchange/presentation/widgets/custom_image.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/route_manager.dart';
 import '../../../constants/images.dart';
 import '../../theme.dart';
 import '../../widgets/custom_button.dart';
@@ -29,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext homeContext) {
     return Scaffold(
       body: InkWell(
         focusColor: Colors.transparent,
@@ -61,13 +60,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 150,
                   width: 200,
                 ),
-                // Text(
-                //   "Hi Welcome Back!",
-                //   style: Theme.of(context).textTheme.headline6!.copyWith(
-                //         fontWeight: FontWeight.w700,
-                //         fontSize: 24,
-                //       ),
-                // ),
                 const SizedBox(
                   height: 4,
                 ),
@@ -108,24 +100,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         const SizedBox(height: 24),
-                        BlocBuilder<LoginCubit, LoginState>(
-                          builder: (context, state) {
-                            if (state is LoginStateLoading) {
-                              return const CircularProgressIndicator();
-                            }
-                            return InkWell(
-                              focusColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              splashColor: Colors.transparent,
-                              onTap: () {
-                                context.read<LoginCubit>().login();
-                              },
-                              child: customButton(
-                                  HexColor(AppTheme.primaryColorString!),
-                                  "Login",
-                                  HexColor(AppTheme.secondaryColorString!),
-                                  context),
+                        Builder(
+                          builder: (context) {
+                            // final loginState =
+                            //     homeContext.watch<LoginCubit>().state;
+                            return customButton(
+                              onTap: () => Get.to(() => const HomeScreen()),
+                              text: "Login",
+                              context: context,
+                              // child: (loginState is LoginStateLoading)
+                              //     ? const Center(
+                              //         child: CircularProgressIndicator(
+                              //             color: Colors.white),
+                              //       )
+                              //     : null,
                             );
                           },
                         ),

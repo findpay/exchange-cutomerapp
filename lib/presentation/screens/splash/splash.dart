@@ -1,10 +1,13 @@
 // ignore_for_file: library_private_types_in_public_api
+import 'dart:async';
+
 import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constants/images.dart';
 import '../../theme.dart';
+import '../authentication/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,9 +24,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void init() async {
-    // Timer(const Duration(seconds: 3), () {
-    //   Get.offAll(() => const LoginScreen());
-    // });
+    Timer(const Duration(seconds: 3), () {
+      Get.offAll(() => const LoginScreen());
+    });
   }
 
   @override

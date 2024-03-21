@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static String? primaryColorString = "#4263EB";
   static String? secondaryColorString = "#F5F7FE";
-  static bool isLightTheme = true;
+  static bool isLightTheme = false;
 
   static ThemeData getTheme() {
     if (isLightTheme) {
@@ -76,6 +76,7 @@ class AppTheme {
       highlightColor: Colors.transparent,
       canvasColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
+      cardColor: Colors.white,
       backgroundColor: Colors.white,
       errorColor: Colors.red,
       textTheme: _buildTextTheme(base.textTheme),
