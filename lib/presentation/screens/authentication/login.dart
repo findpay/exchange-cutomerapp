@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, library_private_types_in_public_api
-import 'package:exchange/presentation/screens/home/home.dart';
+import 'package:exchange/presentation/screens/accounts.dart';
 import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             // final loginState =
                             //     homeContext.watch<LoginCubit>().state;
                             return customButton(
-                              onTap: () => Get.to(() => const HomeScreen()),
+                              onTap: () => Get.to(() => const AccountScreen()),
                               text: "Login",
                               context: context,
                               // child: (loginState is LoginStateLoading)

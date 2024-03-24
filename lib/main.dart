@@ -1,11 +1,10 @@
-import 'package:exchange/logic/cubit/home_cubit.dart';
-import 'package:exchange/logic/cubit/login_cubit.dart';
 import 'package:exchange/presentation/screens/splash/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
+import 'logic/state_injector.dart';
 import 'presentation/theme.dart';
 
 void main() async {
@@ -19,6 +18,8 @@ void main() async {
             Colors.transparent //or set color with: Color(0xFF0000FF)
         ),
   );
+
+  await StateInjector.init();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -44,20 +45,16 @@ class MyApp extends StatelessWidget {
       systemNavigationBarDividerColor: AppTheme.getTheme().disabledColor,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<LoginCubit>(
-          create: (BuildContext context) => LoginCubit(),
+    return MultiRepositoryProvider(
+      providers: StateInjector.repositoryProviders,
+      child: MultiBlocProvider(
+        providers: StateInjector.blocProviders,
+        child: GetMaterialApp(
+          title: 'FinPay',
+          theme: AppTheme.getTheme(),
+          debugShowCheckedModeBanner: false,
+          home: const SplashScreen(),
         ),
-        BlocProvider<HomeCubit>(
-          create: (BuildContext context) => HomeCubit(),
-        ),
-      ],
-      child: GetMaterialApp(
-        title: 'FinPay',
-        theme: AppTheme.getTheme(),
-        debugShowCheckedModeBanner: false,
-        home: const SplashScreen(),
       ),
     );
   }

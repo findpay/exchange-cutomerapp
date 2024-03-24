@@ -121,6 +121,7 @@ class _OtpAuthenticationScreenState extends State<OtpAuthenticationScreen> {
                             text: "Continue",
                             txtClr: HexColor(AppTheme.secondaryColorString!),
                             context: context),
+                            
                       ],
                     ),
                   ),

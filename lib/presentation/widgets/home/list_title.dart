@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:exchange/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -13,7 +11,8 @@ Widget buildListTile(
     required int type}) {
   return ListTile(
     onTap: () {
-      Get.bottomSheet(topupDialog(context,paymentList: paymentListItem,type: type));
+      Get.bottomSheet(
+          topupDialog(context, paymentList: paymentListItem, type: type));
     },
     contentPadding:
         const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
