@@ -10,6 +10,7 @@ class HomeState extends Equatable {
 
 class HomeInitialState extends HomeState {}
 
+
 class HomeErrorState extends HomeState {
   final String code;
   final String message;
@@ -22,8 +23,10 @@ class HomeErrorState extends HomeState {
 class HomeLoadingState extends HomeState {}
 
 class HomeLoadedState extends HomeState {
-  List<PaymentList> paymentlists;
+  List<PaymentList> fromPaymentlists;
+  List<PaymentList> toPaymentlists;
    HomeLoadedState({
-    required this.paymentlists,
+    required this.fromPaymentlists,
+    required this.toPaymentlists
   });
 }

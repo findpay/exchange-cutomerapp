@@ -1,4 +1,3 @@
-import 'package:exchange/logic/cubit/change_account_cubit.dart';
 import 'package:exchange/logic/cubit/home_cubit.dart';
 import 'package:exchange/logic/cubit/login_cubit.dart';
 import 'package:exchange/presentation/screens/splash/splash.dart';
@@ -52,10 +51,6 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<HomeCubit>(
           create: (BuildContext context) => HomeCubit(),
-        ),
-        BlocProvider<ChangeAccountCubit>(
-          create: (BuildContext context) => ChangeAccountCubit(
-              homeCubit: BlocProvider.of<HomeCubit>(context)),
         ),
       ],
       child: GetMaterialApp(

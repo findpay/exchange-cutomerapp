@@ -1,5 +1,4 @@
 import 'package:exchange/constants/images.dart';
-import 'package:exchange/logic/cubit/change_account_cubit.dart';
 import 'package:exchange/logic/cubit/home_cubit.dart';
 import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:exchange/presentation/widgets/home/list_title.dart';
@@ -20,8 +19,8 @@ class HomeScreen extends StatelessWidget {
                 .stretch, // Ensure widgets stretch horizontally
             children: [
               const Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: 8.0), // Add vertical padding
+                padding:
+                    EdgeInsets.symmetric(vertical: 8.0), // Add vertical padding
                 child: Row(
                   children: [
                     CustomImage(path: DefaultImages.avatar),
@@ -31,37 +30,51 @@ class HomeScreen extends StatelessWidget {
               BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is HomeLoadedState) {
-                    final paymentLists = state.paymentlists;
+                    final fromPaymentLists = state.fromPaymentlists;
+                    final toPaymentLists = state.toPaymentlists;
                     return Card(
-                      color: Colors.transparent,
-                      elevation: 3,
+                      color: Colors.white,
                       margin: const EdgeInsets.all(20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           const Padding(
-                            padding: EdgeInsets.all(
-                                8.0), // Add padding to the text
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16), // Add padding to the text
                             child: Text(
                               'From',
                               style: TextStyle(
                                 fontWeight:
-                                    FontWeight.bold, // Make the text bold
+                                    FontWeight.w500, // Make the text bold
                                 fontSize: 16.0, // Increase font size
                               ),
                             ),
                           ),
                           buildListTile(
-                              paymentListItem: paymentLists,
-                              context: context),
+                              paymentListItem: fromPaymentLists,
+                              context: context,
+                              type: 1),
                           const Divider(
                             thickness: 1.0,
                             indent: 16.0,
                             endIndent: 16.0,
                           ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(
+                              'To',
+                              style: TextStyle(
+                                fontWeight:
+                                    FontWeight.w500, // Make the text bold
+                                fontSize: 16.0, // Increase font size
+                              ),
+                            ),
+                          ),
                           buildListTile(
-                              paymentListItem: paymentLists, context: context)
+                              paymentListItem: toPaymentLists,
+                              context: context,
+                              type: 2)
                         ],
                       ),
                     );
