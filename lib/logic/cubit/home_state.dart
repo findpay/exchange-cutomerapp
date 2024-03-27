@@ -3,6 +3,7 @@ part of 'home_cubit.dart';
 
 class HomeState extends Equatable {
   const HomeState();
+  
 
   @override
   List<Object> get props => [];
@@ -22,8 +23,15 @@ class HomeErrorState extends HomeState {
 class HomeLoadingState extends HomeState {}
 
 class HomeLoadedState extends HomeState {
-  final List<PaymentList> fromPaymentlists;
-  final List<PaymentList> toPaymentlists;
+  final List<PaymentList> accountList;
   const HomeLoadedState(
-      {required this.fromPaymentlists, required this.toPaymentlists});
+      {required this.accountList,});
+
+  HomeLoadedState copyWith({
+    List<PaymentList>? accountList,
+  }) {
+    return HomeLoadedState(
+      accountList :  this.accountList,
+    );
+  }
 }

@@ -21,7 +21,7 @@ class MemberRepositoryImp extends MemberRepository {
       Map<String, dynamic> body) async {
     try {
       final resp = await remoteDataSource.httpPost(
-          url: RemoteUrls.getAccounts, body: body);
+          url: RemoteUrls.addMember, body: body);
       final mapList = resp['data'];
       final result = MemberModel.fromMap(mapList);
       localDataSource.cacheUserResponse(result);

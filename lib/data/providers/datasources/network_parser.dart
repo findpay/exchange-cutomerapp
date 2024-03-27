@@ -102,11 +102,8 @@ class NetworkParser {
   static String parsingDoseNotExist(String body) {
     final errorsMap = json.decode(body);
     try {
-      if (errorsMap['notification'] != null) {
-        return errorsMap['notification'];
-      }
-      if (errorsMap['message'] != null) {
-        return errorsMap['message'];
+       if (errorsMap['error'] != null) {
+        return errorsMap['error'].toString();
       }
     } catch (e) {
       log(e.toString(), name: _className);

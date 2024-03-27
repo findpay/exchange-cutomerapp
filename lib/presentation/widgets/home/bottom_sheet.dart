@@ -1,7 +1,5 @@
-import 'package:exchange/logic/cubit/home_cubit.dart';
 import 'package:exchange/presentation/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/app_constants.dart';
@@ -66,10 +64,7 @@ Widget topupDialog(BuildContext context,
                   paymentList.length,
                   (index) => ListTile(
                         onTap: () {
-                          context
-                              .read<HomeCubit>()
-                              .onchangeAccount(paymentList[index], type);
-                          Navigator.pop(context);
+                       
                         },
                         title: Text(
                           paymentList[index].name,

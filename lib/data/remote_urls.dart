@@ -3,7 +3,9 @@ class RemoteUrls {
   //"http://159.223.81.156:3000";
 
   static const addMember = '$rootUrl/members';
-  static const getAccounts = '$rootUrl/sample-accounts?populate=icon';
+  static const getSampleAccounts = '$rootUrl/sample-accounts?populate=icon';
+
+  static const saveAcounts = '$rootUrl/accounts';
 
   //'${rootUrl}category-subcategory/$categoryId';
 }

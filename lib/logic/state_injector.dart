@@ -1,4 +1,7 @@
 import 'package:exchange/data/repositories/account_repository.dart';
+import 'package:exchange/logic/cubit/account_type_cubit.dart';
+import 'package:exchange/logic/cubit/filter_accounts_cubit.dart';
+import 'package:exchange/logic/cubit/save_accounts_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
@@ -43,9 +46,8 @@ class StateInjector {
 
     RepositoryProvider<MemberRepository>(
       create: (context) => MemberRepositoryImp(
-        remoteDataSource: context.read<RemoteDataSource>(),
-        localDataSource: context.read<LocalDataSource>()
-      ),
+          remoteDataSource: context.read<RemoteDataSource>(),
+          localDataSource: context.read<LocalDataSource>()),
     ),
     RepositoryProvider<AccountRepository>(
       create: (context) => AccountRepositoryImp(
@@ -65,10 +67,23 @@ class StateInjector {
       create: (BuildContext context) =>
           NewMemberCubit(memberRepository: context.read<MemberRepository>()),
     ),
-
     BlocProvider<AccountsCubit>(
       create: (BuildContext context) =>
           AccountsCubit(accountRepository: context.read<AccountRepository>()),
+    ),
+    BlocProvider<SaveAccountsCubit>(
+      create: (BuildContext context) => SaveAccountsCubit(
+          accountRepository: context.read<AccountRepository>()),
+    ),
+    BlocProvider<AccountTypeCubit>(
+      create: (BuildContext context) => AccountTypeCubit(),
+    ),
+    BlocProvider<FilterAccountsCubit>(
+      create: (BuildContext context) => FilterAccountsCubit(
+        homeCubit: BlocProvider.of<HomeCubit>(context),
+        accountTypeCubit: BlocProvider.of<AccountTypeCubit>(context),
+        initialPaymentList: context.read<HomeCubit>().accountLists
+      ),
     ),
   ];
 }

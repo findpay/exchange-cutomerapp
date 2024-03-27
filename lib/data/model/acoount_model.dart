@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class AccountsModel extends Equatable {
   final int id;
   final String name;
@@ -10,9 +9,9 @@ class AccountsModel extends Equatable {
   final String shortCode;
   final Icon icon;
 
-  AccountsModel(
+   const AccountsModel(
       {required this.id,
-      required this.name,
+      required this.name ,
       required this.type,
       required this.shortCode,
       required this.icon});

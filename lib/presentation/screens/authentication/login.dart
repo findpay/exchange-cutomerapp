@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls, library_private_types_in_public_api
-import 'package:exchange/presentation/screens/accounts.dart';
+import 'package:exchange/logic/utility/utilities.dart';
+import 'package:exchange/presentation/screens/home/home.dart';
 import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,20 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
+  }
+
+  _submitForm() {
+    final mobile = mobileController.text.trim();
+    if (mobile.isEmpty) {
+      return Utility.showSnackBar(context, 'Please enter mobile number');
+    }
+    if (mobile.length < 10) {
+      return Utility.showSnackBar(context, 'Please enter proper number');
+    }
+
+    Get.off(() => HomeScreen());
+
+    // Get.off(() => AccountScreen(memberMobile: mobile));
   }
 
   @override
@@ -71,7 +86,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: const Color(0xffA2A0A8),
                       ),
                 ),
-
                 ListView(
                   physics: const ClampingScrollPhysics(),
                   shrinkWrap: true,
@@ -95,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textEditingController: mobileController,
                           capitalization: TextCapitalization.none,
                           limit: [
-                            LengthLimitingTextInputFormatter(10),
+                            LengthLimitingTextInputFormatter(13),
                             FilteringTextInputFormatter.digitsOnly
                           ],
                         ),
@@ -105,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             // final loginState =
                             //     homeContext.watch<LoginCubit>().state;
                             return customButton(
-                              onTap: () => Get.to(() => const AccountScreen()),
+                              onTap: _submitForm,
                               text: "Login",
                               context: context,
                               // child: (loginState is LoginStateLoading)
