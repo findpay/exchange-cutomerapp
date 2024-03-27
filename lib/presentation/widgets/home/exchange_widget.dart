@@ -2,7 +2,6 @@ import 'package:exchange/constants/app_constants.dart';
 import 'package:exchange/constants/images.dart';
 import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ExchangeWidget extends StatelessWidget {
@@ -49,7 +48,7 @@ class ExchangeWidget extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          paymentList.name,
+                          paymentList.name.isNotEmpty ? paymentList.name  : 'select account',
                           style: theme.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(
