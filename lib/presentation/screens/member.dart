@@ -3,7 +3,6 @@ import 'package:exchange/logic/utility/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
 import '../../constants/images.dart';
 import '../theme.dart';
@@ -27,21 +26,14 @@ class _MemberScreenState extends State<MemberScreen> {
     return BlocListener<NewMemberCubit, NewMemberState>(
         listener: (context, state) {
           if (state is NewMemberLoadingState) {
-            Utility.showLoadingIndicator();
+            Utility.loadingDialog(context);
           }
           if (state is NewMembeErrorState) {
-            Get.back();
-            Get.defaultDialog(
-              title: "Error",
-              content: Text(state.message),
-              onCancel: () {
-                // Handle dialog cancel action
-                // Get.back(); // Close the dialog
-              },
-            );
+            Navigator.pop(context);
+            Utility.errorDialog(context: context, message: state.message);
           }
           if (state is NewMemberLoadedState) {
-            Get.back();
+            Navigator.pop(context);
           }
         },
         child: Scaffold(

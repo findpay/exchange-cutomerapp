@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../theme.dart';
 
@@ -13,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? sufix;
   final TextInputType? inputType;
   const CustomTextField(
-      {Key? key,
+      {super.key,
       this.hintText,
       this.widget,
       this.radius,
@@ -21,14 +20,14 @@ class CustomTextField extends StatelessWidget {
       this.textEditingController,
       this.isObsecure = false,
       this.sufix,
-      this.inputType})
-      : super(key: key);
+      this.inputType});
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height: 56,
-      width: Get.width,
+      width: screenWidth,
       decoration: BoxDecoration(
           color: color!, borderRadius: BorderRadius.circular(radius!)),
       child: TextFormField(

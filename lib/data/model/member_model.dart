@@ -8,8 +8,8 @@ class MemberModel extends Equatable {
   final String phone;
   final String firstName;
   final String lastName;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final String createdAt;
+  final String updatedAt;
 
   const MemberModel({required this.id, required this.phone, required this.firstName, required this.lastName, required this.createdAt, required this.updatedAt});
 
@@ -23,8 +23,8 @@ class MemberModel extends Equatable {
     String? phone,
     String? firstName,
     String? lastName,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    String? createdAt,
+    String? updatedAt,
   }) {
     return MemberModel(
       id: id ?? this.id,
@@ -45,8 +45,8 @@ class MemberModel extends Equatable {
       'phone': phone,
       'firstName': firstName,
       'lastName': lastName,
-      'createdAt': createdAt.millisecondsSinceEpoch,
-      'updatedAt': updatedAt.millisecondsSinceEpoch,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -56,8 +56,8 @@ class MemberModel extends Equatable {
       phone: (map["phone"] ?? '') as String,
       firstName: (map["firstName"] ?? '') as String,
       lastName: (map["lastName"] ?? '') as String,
-      createdAt: DateTime.fromMillisecondsSinceEpoch((map["createdAt"]??0) as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch((map["updatedAt"]??0) as int),
+      createdAt: (map["createdAt"]?? '') as String,
+      updatedAt: (map["createdAt"]?? '') as String,
     );
   }
 

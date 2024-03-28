@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../theme.dart';
 
@@ -26,9 +25,10 @@ class CardTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       height: 56,
-      width: Get.width,
+      width: screenWidth,
       decoration: BoxDecoration(
           color: color!, borderRadius: BorderRadius.circular(radius!)),
       child: TextFormField(

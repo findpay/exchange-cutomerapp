@@ -1,9 +1,8 @@
-import 'package:exchange/presentation/screens/splash/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/route_manager.dart';
+import 'data/router.dart';
 import 'logic/state_injector.dart';
 import 'presentation/theme.dart';
 
@@ -21,7 +20,7 @@ void main() async {
 
   await StateInjector.init();
 
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then(
@@ -49,11 +48,12 @@ class MyApp extends StatelessWidget {
       providers: StateInjector.repositoryProviders,
       child: MultiBlocProvider(
         providers: StateInjector.blocProviders,
-        child: GetMaterialApp(
+        child: MaterialApp(
           title: 'FinPay',
           theme: AppTheme.getTheme(),
+          onGenerateRoute: RouteNames.generateRoute,
+          initialRoute: RouteNames.splashScreen,
           debugShowCheckedModeBanner: false,
-          home: const SplashScreen(),
         ),
       ),
     );

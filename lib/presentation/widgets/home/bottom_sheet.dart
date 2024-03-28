@@ -1,8 +1,9 @@
+import 'package:exchange/logic/cubit/home_cubit.dart';
+import 'package:exchange/logic/utility/utilities.dart';
 import 'package:exchange/presentation/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../constants/app_constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../data/model/member_accounts.dart';
 
 Widget topupDialog(BuildContext context,
     {required List<PaymentList> paymentList, required int type}) {
@@ -10,7 +11,7 @@ Widget topupDialog(BuildContext context,
     padding: const EdgeInsets.only(left: 16, right: 16, bottom: 40),
     child: Container(
       height: 332,
-      width: Get.width,
+      width: Utility.getScreenWidth(context),
       decoration: BoxDecoration(
         color: AppTheme.isLightTheme == false
             ? const Color(0xff211F32)
@@ -48,7 +49,7 @@ Widget topupDialog(BuildContext context,
                   hoverColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () {
-                    Get.back();
+                    Navigator.pop(context);
                   },
                   child: const Icon(
                     Icons.close,
@@ -64,7 +65,10 @@ Widget topupDialog(BuildContext context,
                   paymentList.length,
                   (index) => ListTile(
                         onTap: () {
-                       
+                          print("object");
+                          context
+                              .read<HomeCubit>()
+                              .onChangeAccount(paymentList[index], type);
                         },
                         title: Text(
                           paymentList[index].name,

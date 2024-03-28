@@ -22,16 +22,9 @@ class HomeErrorState extends HomeState {
 
 class HomeLoadingState extends HomeState {}
 
-class HomeLoadedState extends HomeState {
-  final List<PaymentList> accountList;
-  const HomeLoadedState(
-      {required this.accountList,});
+class HomeChangeState extends HomeState {}
 
-  HomeLoadedState copyWith({
-    List<PaymentList>? accountList,
-  }) {
-    return HomeLoadedState(
-      accountList :  this.accountList,
-    );
-  }
+class HomeLoadedState extends HomeState {
+  const HomeLoadedState();
+
 }

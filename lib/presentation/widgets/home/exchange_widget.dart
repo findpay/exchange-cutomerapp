@@ -1,12 +1,13 @@
-import 'package:exchange/constants/app_constants.dart';
 import 'package:exchange/constants/images.dart';
+import 'package:exchange/logic/utility/utilities.dart';
 import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import '../../../data/model/member_accounts.dart';
 
 class ExchangeWidget extends StatelessWidget {
   final String label;
-  final PaymentList paymentList;
+  final PaymentList? paymentList;
   final VoidCallback onTab;
   const ExchangeWidget(
       {super.key, required this.label, required this.paymentList, required this.onTab});
@@ -26,7 +27,7 @@ class ExchangeWidget extends StatelessWidget {
           style: theme.copyWith(fontSize: 16, fontWeight: FontWeight.w500),
         ),
         Container(
-          width: Get.width,
+          width: Utility.getScreenWidth(context),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(width: 1, color: Colors.grey),
@@ -48,7 +49,7 @@ class ExchangeWidget extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          paymentList.name.isNotEmpty ? paymentList.name  : 'select account',
+                          paymentList != null ? paymentList!.name  : 'select account',
                           style: theme.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(

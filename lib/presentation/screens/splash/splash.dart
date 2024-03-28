@@ -1,13 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 import 'dart:async';
 
+import 'package:exchange/data/router.dart';
 import 'package:exchange/presentation/widgets/custom_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constants/images.dart';
 import '../../theme.dart';
-import '../authentication/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,16 +24,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void init() async {
     Timer(const Duration(seconds: 3), () {
-      Get.offAll(() => const LoginScreen());
+      Navigator.pushReplacementNamed(context, RouteNames.loginScreen);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+        double screenWidth = MediaQuery.of(context).size.width;
+        double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
-        height: Get.height,
-        width: Get.width,
+        height: screenHeight,
+        width: screenWidth,
         decoration: BoxDecoration(
             color: AppTheme.isLightTheme == false
                 ? HexColor('#15141F')

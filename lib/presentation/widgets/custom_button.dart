@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../theme.dart';
 
@@ -11,11 +10,12 @@ Widget customButton({
   Widget? child,
   VoidCallback? onTap,
 }) {
+  double screenWidth = MediaQuery.of(context).size.width;
   return InkWell(
     onTap: child == null ? onTap : null,
     child: Container(
       height: 56,
-      width: Get.width,
+      width: screenWidth,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: bgClr ?? HexColor(AppTheme.primaryColorString!),

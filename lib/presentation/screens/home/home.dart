@@ -1,16 +1,40 @@
-import 'package:exchange/constants/app_constants.dart';
 import 'package:exchange/constants/images.dart';
 import 'package:exchange/logic/cubit/home_cubit.dart';
+import 'package:exchange/logic/utility/utilities.dart';
 import 'package:exchange/presentation/widgets/custom_image.dart';
+import 'package:exchange/presentation/widgets/home/bottom_sheet.dart';
 import 'package:exchange/presentation/widgets/home/exchange_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key}); // Fix syntax for the constructor
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  changeAccount(int accountType) {
+    final homeCubit = context.read<HomeCubit>();
+
+    if (homeCubit.firstSelectedAccount != null &&
+        homeCubit.secondSelectedAccount != null) {
+      final accountList = homeCubit.accountLists;
+      final selectedAccount = accountType == 1
+          ? homeCubit.secondSelectedAccount
+          : homeCubit.firstSelectedAccount;
+
+      final accounts = accountList
+          .where((element) => element.id != selectedAccount!.id)
+          .toList();
+      Utility.showBottomSheet(context,
+          topupDialog(context, paymentList: accounts, type: accountType));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final homeCubit = context.read<HomeCubit>();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -31,11 +55,20 @@ class HomeScreen extends StatelessWidget {
               BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is HomeLoadedState) {
-                    return ExchangeWidget(
-                    label: 'You Send',
-                    paymentList: state.accountList.first,
-                    onTab: () {},
-                  );
+                    return Column(
+                      children: [
+                        ExchangeWidget(
+                          label: 'You Send',
+                          paymentList: homeCubit.firstSelectedAccount,
+                          onTab: () => changeAccount(1),
+                        ),
+                        ExchangeWidget(
+                          label: 'You Send',
+                          paymentList: homeCubit.secondSelectedAccount,
+                          onTab: () => changeAccount(2),
+                        ),
+                      ],
+                    );
                   }
                   return Container();
                 },

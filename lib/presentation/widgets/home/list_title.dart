@@ -1,7 +1,7 @@
-import 'package:exchange/constants/app_constants.dart';
+import 'package:exchange/logic/utility/utilities.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import '../../../constants/images.dart';
+import '../../../data/model/member_accounts.dart';
 import '../custom_image.dart';
 import 'bottom_sheet.dart';
 
@@ -11,7 +11,7 @@ Widget buildListTile(
     required int type}) {
   return ListTile(
     onTap: () {
-      Get.bottomSheet(
+      Utility.showBottomSheet(context,
           topupDialog(context, paymentList: paymentListItem, type: type));
     },
     contentPadding:

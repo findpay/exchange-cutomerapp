@@ -2,20 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Utility {
-  static void showLoadingIndicator() {
-    Get.dialog(
-      const Center(
-        child: CircularProgressIndicator(),
-      ),
-      barrierDismissible: false,
-    );
-  }
-
-   static loadingDialog(BuildContext context,
-      {bool barrierDismissible = false, String message = '',bool isTrans = false}) {
+  static loadingDialog(BuildContext context,
+      {bool barrierDismissible = false,
+      String message = '',
+      bool isTrans = false}) {
     showCustomDialog(
       context,
       isTrans: isTrans,
@@ -36,30 +28,29 @@ class Utility {
     );
   }
 
-  static showCustomDialog(
-    BuildContext context, {
-    Widget? child,
-    bool barrierDismissible = false,
-    bool isTrans = false
-  }) {
+  static showCustomDialog(BuildContext context,
+      {Widget? child, bool barrierDismissible = false, bool isTrans = false}) {
     return showDialog(
       context: context,
       barrierDismissible: barrierDismissible,
       builder: (BuildContext context) {
-        return !isTrans ? Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: child,
-        ) :  Material(
-          type: MaterialType.transparency,
-          child: child,
-        );
+        return !isTrans
+            ? Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: child,
+              )
+            : Material(
+                type: MaterialType.transparency,
+                child: child,
+              );
       },
     );
   }
 
-  static errorDialog( {required BuildContext context,int? code,required String message}) {
+  static errorDialog(
+      {required BuildContext context, int? code, required String message}) {
     if (Platform.isIOS) {
       showCupertinoDialog(
         context: context,
@@ -113,5 +104,29 @@ class Utility {
 
   static void closeKeyBoard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
+  }
+
+  static showBottomSheet(BuildContext context, Widget child) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return child;
+      },
+    );
+  }
+
+  static double getScreenWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
+
+  static double getScreenHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
   }
 }

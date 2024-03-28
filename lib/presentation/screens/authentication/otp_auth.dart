@@ -1,13 +1,14 @@
+import 'package:exchange/data/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../theme.dart';
 import '../../widgets/custom_button.dart';
 
 class OtpAuthenticationScreen extends StatefulWidget {
-  const OtpAuthenticationScreen({super.key});
+  final String mobile;
+  const OtpAuthenticationScreen({super.key, required this.mobile});
 
   @override
   State<OtpAuthenticationScreen> createState() =>
@@ -67,7 +68,7 @@ class _OtpAuthenticationScreenState extends State<OtpAuthenticationScreen> {
                       hoverColor: Colors.transparent,
                       splashColor: Colors.transparent,
                       onTap: () {
-                        Get.back();
+                        Navigator.pop(context);
                       },
                       child: const Icon(Icons.arrow_back)),
                   const Spacer(),
@@ -117,11 +118,15 @@ class _OtpAuthenticationScreenState extends State<OtpAuthenticationScreen> {
                           height: 32,
                         ),
                         customButton(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RouteNames.memberScreen,
+                                  arguments: widget.mobile);
+                            },
                             bgClr: HexColor(AppTheme.primaryColorString!),
                             text: "Continue",
                             txtClr: HexColor(AppTheme.secondaryColorString!),
                             context: context),
-                            
                       ],
                     ),
                   ),
